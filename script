@@ -1,0 +1,15 @@
+#! /usr/bin/bash
+
+key=$(<'/home/john/project/mc/api.key')
+
+status=$(curl -b storeSelected=131 \
+	-sS 'http://www.microcenter.com/product/443781/Raspberry_Pi_2_Model_B' | \
+	grep inStock | tr -d '"')
+if [[ "$status" != 'inStock:False,' ]]
+then    
+	curl -u $key: -X POST https://api.pushbullet.com/v2/pushes \
+	--header 'Content-Type: application/json' \
+	--data-binary '{"type": "note", "title": "Pi", "body": "'"$status"'"}'
+else
+	echo "$status"
+fi

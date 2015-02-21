@@ -1,0 +1,9 @@
+[Unit]
+Description=Run script to check stock
+
+[Service]
+Type=oneshot
+ExecStart=/home/john/project/mc/script
+
+[Install]
+WantedBy=default.target

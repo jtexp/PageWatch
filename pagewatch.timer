@@ -1,0 +1,9 @@
+[Unit]
+Description=stock timer
+
+[Timer]
+OnBootSec=30m
+OnUnitActiveSec=30m
+
+[Install]
+WantedBy=Timers.target
